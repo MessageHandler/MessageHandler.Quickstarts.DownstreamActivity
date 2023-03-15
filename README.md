@@ -16,6 +16,14 @@ Use this pattern every time a command needs to result in an immediate state chan
 
 Examples include performing a software configuration update, or changing the state of an IoT actuator such as a relay or step motor.
 
+## Scenario
+
+In this scenario you will send a `changeconsolecolor` command remotely, through an API, to instruct the Worker process to change its output color.
+
+Any color represented by the [ConsoleColor enum](https://learn.microsoft.com/en-us/dotnet/api/system.consolecolor?view=net-7.0) is supported.
+
+Note: the logging infrastructure has its own color coding and won't follow the change
+
 ## What you need to get started
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) should be installed
@@ -25,19 +33,19 @@ Examples include performing a software configuration update, or changing the sta
 
 ## Running the sample
 
-Prior to being able to run the sample, you need to [configure the user secrets file](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#manage-user-secrets-with-visual-studio).
+Prior to running the sample, you need to [configure the user secrets file](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#manage-user-secrets-with-visual-studio).
 
 In the secrets file you must specify the following configuration values.
 
 ```JSON
 {
-  "servicebusnamespace": "your azure service bus connection string goes here"
+  "servicebusnamespace": "your azure service bus connection string goes here",
 }
 ```
 
-Also ensure a queue named `control` is created up front in the service bus namespace.
+Also ensure a queue named `control` is created in the service bus namespace.
 
-Once configured you can start the worker or run the unittests.
+Once configured you can start the API & Worker, or run the unittests.
 
 ## Designed with testing in mind
 
